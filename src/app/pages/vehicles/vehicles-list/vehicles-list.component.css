@@ -1,0 +1,10 @@
+.is-invalid {
+    border: 2px solid red; /* Borde rojo de 2 píxeles de ancho */
+  }
+
+  #exampleModalLabel {
+    color: white;
+}
+.form-label{
+  color: white;
+}

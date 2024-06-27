@@ -1,0 +1,148 @@
+<div data-bs-theme="dark">
+    <h3>CLIENTS</h3>
+    <h4>Regist New Client</h4>
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      New Client
+    </button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">New Client</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="reseteo()"></button>
+          </div>
+          <div class="modal-body">
+            
+            <form [formGroup]="formRegist" novalidate (ngSubmit)="registClient($event)">
+              
+                <div class="mb-3">
+                    <label for="first_name" class="form-label">Client´s Name: </label>
+                    <input type="text" class="form-control" id="first_name" formControlName="first_name" placeholder="Please enter the client´s name" 
+                    [ngClass]="{'is-invalid' : hasErrors('first_name', 'required')||hasErrors('first_name', 'pattern')}"
+                    >
+                    @if(hasErrors('first_name', 'required')){
+                      <span class="text-danger">Name is Required</span>
+                   }
+                   @if(hasErrors('first_name', 'pattern')){
+                    <span class="text-danger">Name is not valid</span>
+                 }
+                  </div>
+            
+                <div class="mb-3">
+                    <label for="lastname" class="form-label">Client´s Lastname: </label>
+                    <input type="text" class="form-control" id="lastname" formControlName="lastname" placeholder="Please enter the client's lastname"
+                    [ngClass]="{'is-invalid' : hasErrors('lastname', 'required')||hasErrors('lastname', 'pattern')}"
+                    >
+                    @if(hasErrors('lastname', 'required')){
+                      <span class="text-danger">Lastname is Required</span>
+                   }
+                   @if(hasErrors('lastname', 'pattern')){
+                    <span class="text-danger">Lastname is not valid</span>
+                 }
+                </div>
+            
+                <div class="mb-3">
+                    <label for="second_lastname" class="form-label">Client´s Second Lastname:</label>
+                    <input type="text" class="form-control" id="second_lastname" formControlName="second_lastname" placeholder="Please enter the client's second lastname"
+                    [ngClass]="{'is-invalid': hasErrors('second_lastname', 'pattern')}"
+                    >
+                    
+                   @if(hasErrors('second_lastname', 'pattern')){
+                    <span class="text-danger">Lastname Invalid</span>
+                 }
+    
+                </div>
+              
+                <div class="mb-3">
+                    <label for="document_type" class="form-label">Client´s Document Type: </label>
+                    <select name="" class="form-select" id="document_type" formControlName="document_type">
+                        @for (type of IDType; track $index) {
+                            <option value="{{type}}">{{type}}</option>
+                        }
+                    </select>
+                    </div>
+                
+
+                    <div class="mb-3">
+                        <label for="document_number" class="form-label">Document's Number:</label>
+                        <input type="text" class="form-control" id="document_number" formControlName="document_number" placeholder="Please enter the document's number"
+                        [ngClass]="{'is-invalid': hasErrors('document_number', 'pattern') || hasErrors('document_number', 'required')}"
+                        >
+                        @if(hasErrors('document_number', 'required')){
+                            <span class="text-danger">Document number is Required</span>
+                         }
+                       @if(hasErrors('document_number', 'pattern')){
+                        <span class="text-danger">Document number is Invalid</span>
+                     }
+                    </div>
+                
+
+                    <div class="mb-3">
+                        <label for="birthday" class="form-label">Client´s Birthday: </label>
+                        <input type="date" class="form-control" id="birthday" formControlName="birthday" placeholder="Please enter the client's birthday"
+                        >
+                    </div>
+               
+                    <div class="mb-3">
+                        <label for="gender" class="form-label">Client´s Gender: </label>
+                        <select name="" class="form-select" id="gender" formControlName="gender">
+                            @for (type of genders; track $index) {
+                                <option value="{{type}}">{{type}}</option>
+                            }
+                        </select>
+                        </div>
+        
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="reseteo()" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">SAVE</button>
+              </div>
+              
+             
+
+            </form>
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+
+
+ 
+
+    <div>
+        <h4>List OF Clients</h4>
+    <table class="table table-striped-columns" >
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Last Name</th>
+                <th>Document type</th>
+                <th>Document Number</th>
+                <th>Detail</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (client of clientsList; track $index) {
+                <tr>
+                    <th scope="row">{{client.id}}</th>
+                    <td>{{client.first_name}}</td>
+                    <td>{{client.last_name}} {{client.second_last_name}}</td>
+                    <td>{{client.document_type}}</td>
+                    <td>{{client.document_number}}</td>
+                    <td><button type="button" class="btn btn-outline-warning">Detail</button></td>
+                     <td><button type="button" class="btn btn-outline-danger">Delete</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+
+</div>

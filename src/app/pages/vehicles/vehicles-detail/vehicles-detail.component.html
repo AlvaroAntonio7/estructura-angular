@@ -1,0 +1,110 @@
+
+<div>
+    @if(loading){
+        <h1>CARGANDOOOOOOOOOOOOOO</h1>
+    }
+    @else{
+        <div data-bs-theme="dark">
+            <div data-bs-theme="dark">
+                <p>vehicles-detail works!</p>
+        
+                <h5>Marca del Vehiculo</h5>
+                <h5>{{vehicle?.brand}}</h5>
+                <h5>Modelo del Vehiculo</h5>
+                <h5>{{vehicle?.model}}</h5>
+                <h5>Año del Vehiculo</h5>
+                <h5>{{vehicle?.year}}</h5>
+                <h5>Matricul del Vehiculo</h5>
+                <h5>{{vehicle?.plate}}</h5>
+            </div>
+        
+            <div>
+        
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Edit Vehicle´s information
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Vehicle´s information</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  
+        
+                    <form [formGroup]="formRegist" novalidate (ngSubmit)="editVehicle($event)">
+                        <div class="mb-3">
+                          <label for="brand" class="form-label">Vehicle Brand: </label>
+                          <input type="text" class="form-control" id="brand" formControlName="brand" placeholder="Please enter the vehicle's brand" 
+                          [ngClass]="{'is-invalid' : hasErrors('brand', 'required')}"
+                          >
+                          @if(hasErrors('brand', 'required')){
+                            <span class="text-danger">Brand Required</span>
+                         }
+                        </div>
+                        <div class="mb-3">
+                          <label for="model" class="form-label">Vehicle Model: </label>
+                          <input type="text" class="form-control" id="model" formControlName="model" placeholder="Please enter the vehicle's model"
+                          [ngClass]="{'is-invalid' : hasErrors('model', 'required')}"
+                          >
+                          @if(hasErrors('model', 'required')){
+                            <span class="text-danger">Model Required</span>
+                         }
+                        </div>
+                      
+                        <div class="mb-3">
+                          <label for="year" class="form-label">Year:</label>
+                          <input type="text" class="form-control" id="year" formControlName="year" placeholder="Please enter the vehicle's year"
+                          [ngClass]="{'is-invalid': hasErrors('year', 'required') || hasErrors('year', 'pattern')}"
+                          >
+                          @if(hasErrors('year', 'required')){
+                            <span class="text-danger">Year Required</span>
+                         }
+                         @if(hasErrors('year', 'pattern')){
+                          <span class="text-danger">Year Invalid</span>
+                       }
+                      
+                        </div>
+                        <div class="mb-3">
+                          <label for="Plate code" class="form-label">Plate Code: </label>
+                          <input type="text" class="form-control" id="plate" formControlName="plate" placeholder="Please enter the vehicle's plate number"
+                          [ngClass]="{'is-invalid' : hasErrors('plate', 'required')}"
+                          >
+                          @if(hasErrors('plate', 'required')){
+                            <span class="text-danger">Plate Required</span>
+                         }
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">SAVE</button>
+                        </div>
+                        
+                      </form>
+        
+        
+        
+        
+                </div>
+                
+              </div>
+            </div>
+          </div>
+            </div>
+        </div>
+
+
+    }
+    <button type="button" class="btn btn-outline-warning" (click)="navigate()">Lista de Vehiculos</button>
+</div>
+
+
+
+
+
+
+
+

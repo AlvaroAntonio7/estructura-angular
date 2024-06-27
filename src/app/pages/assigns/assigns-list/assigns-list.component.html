@@ -1,0 +1,42 @@
+<div data-bs-theme="dark">
+    <h3>ASSIGNS</h3>
+
+    <h4>List of Assigned Vehicles</h4>
+    
+    <table class="table table-striped-columns" >
+        <thead>
+            <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Document</th>
+            <th>Vehicle Brand</th>
+            <th>Model</th>
+            <th>Plate</th>
+            <th>Date of Assignation</th>
+            <th>Detail</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+    
+        <tbody>
+            @for (assign of clientVehicleList; track $index) {
+                <tr>
+                <th scope="row">{{assign.id}}</th>
+                <td>{{assign.first_client_name}}</td>
+                <td>{{assign.last_client_name}} {{assign.second_last_client_name}}</td>
+                <td>{{assign.client_document}}</td>
+                <td>{{assign.brand_vehicle}}</td>
+                <td>{{assign.model_vehicle}}</td>
+                <td>{{assign.plate_vehicle}}</td>
+                <td>{{assign.date_assignment}}</td>
+                <td><button type="button" class="btn btn-outline-warning">Detail</button></td>
+                <td><button type="button" class="btn btn-outline-primary">Edit</button></td>
+                <td><button type="button" class="btn btn-outline-danger">Delete</button></td>
+                </tr>
+            }
+          
+        </tbody>
+      </table>
+</div>
